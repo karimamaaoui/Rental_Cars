@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"></head>
+</head>
+<body>
+    <div class="container">
+        <div class="message" th:if="${param.error}">
+           Invalid Username or Password
+        </div>
+        <div class="message" th:if="${param.logout}">
+           Logout Successfuly
+        </div>
+        
+        <h2>Login Page</h2>
+        <form 
+         th:action="@{/login}"
+         method="post"
+         
+        >
+            <div class="row g-3">
+            <div class="col-12">
+            <label class="form-label">Email:</label>
+                <input name="username" type="text" class="form-control" placeholder="Enter your email" required>
+             </div>
+        
+            <div class="col-12">
+         <label class="form-label">Password:</label>
+                <input  type="password" class="form-control"  name="password" placeholder="Enter your password" required>
+                   </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+     
+        </form>
+        <br>
+        <p>You already have an account ?<a href="/register"> click here </a> </p>
+    </div>
+</body>
+</html>
