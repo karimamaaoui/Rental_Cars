@@ -14,7 +14,13 @@
     </div>
     <div class="container my-2">
         <h4>Welcome, [[${user.getFirstname()}]]</h4>
-        
+         <!-- Search bar form -->
+        <form th:action="@{/cars/search}" method="get" class="my-3">
+            <div class="input-group">
+                <input type="text" name="query" class="form-control" placeholder="Search by brand or model" >
+                <button type="submit" class="btn btn-outline-secondary">Search</button>
+            </div>
+        </form>
     </div>
     <br>
     

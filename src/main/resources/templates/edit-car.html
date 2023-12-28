@@ -31,6 +31,13 @@
                 <label for="price" class="form-label">Price</label>
                 <input type="text" class="form-control" id="price" th:field="*{price}" required>
             </div>
+              <div class="mb-3">
+                <label for="state" class="form-label">State</label>
+                <select class="form-control" id="state" th:field="*{state}" required>
+                    <option value="AVAILABLE">Available</option>
+                    <option value="UNAVAILABLE">Unavailable</option>
+                </select>
+            </div>
             <div class="mb-3">
                 <label for="existingPicture" class="form-label">Existing Picture</label>
                 <img th:src="${carsForm.picture}" alt="Existing Car Image" style="max-height: 100px; max-width: 100px;">

@@ -1,33 +1,24 @@
-package com.rentcars.dao.entities;
+package com.rentcars.web.models.requests;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.*;
+import com.rentcars.dao.entities.Cars;
+import com.rentcars.dao.entities.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name="rentaloperations")
+public class RentalOperationForm {
 
-public class RentalOperation {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "car_id")
     private Cars car;
-
-    @ManyToOne
-    @JoinColumn(name = "client_id")
     private User client;
-
     private LocalDate startDate;
     private LocalDate endDate;
     private String guaranteeType;

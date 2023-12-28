@@ -60,6 +60,7 @@ public class CarsServiceImp implements ICarsService{
 		        existingCar.setNumber(car.getNumber());
 		        existingCar.setPicture(car.getPicture());
 		        existingCar.setPrice(car.getPrice());
+		        existingCar.setState(car.getState());
 		        carsRepository.save(existingCar);
 		    }
 		}

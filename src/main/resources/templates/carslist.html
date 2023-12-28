@@ -23,6 +23,7 @@
             <th>Number</th>
             <th>Picture</th>
             <th>Price</th>
+            <th>State</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -33,6 +34,8 @@
             <td th:text="${car.number}"></td>
             <td><img th:src="${car.picture}" alt="Car Image" style="max-height: 100px; max-width: 100px;"></td>
             <td th:text="${car.price}"></td>
+            <td th:text="${car.state}"></td>
+
             <td>
                <a th:href="@{/cars/edit-car/{id}(id=${car.idCar})}" class="btn btn-primary">Update</a>
                 <a th:href="@{/cars/delete-car/{id}(id=${car.idCar})}" class="btn btn-danger">Delete</a>

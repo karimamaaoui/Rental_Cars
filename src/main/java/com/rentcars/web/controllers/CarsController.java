@@ -130,6 +130,7 @@ public class CarsController {
             car.setNumber(carsForm.getNumber());
             car.setModel(carsForm.getModel());
             car.setPrice(carsForm.getPrice());
+            car.setState(carsForm.getState());
 
             // Check if a new file is provided
             if (!file.isEmpty()) {
