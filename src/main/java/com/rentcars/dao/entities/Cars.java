@@ -1,6 +1,9 @@
 package com.rentcars.dao.entities;
 
 
+import java.time.LocalDate;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -37,10 +40,7 @@ public class Cars {
     @Column(name = "price", nullable = false)
     private float price;   
     @Column(name = "picture", length = 255, nullable = true)
-    private String picture;
-    @Enumerated(EnumType.STRING)
-	private EState state;
-    
+    private String picture;    
     @ManyToOne
     @JoinColumn(name = "agent_id") 
     private User agent;

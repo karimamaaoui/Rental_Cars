@@ -23,17 +23,25 @@
             <th>Rental Fee</th>
             <th>Payment Method</th>
             <th>Guarantee Amount</th>
+            <th>Actions</th>
+
         </tr>
         </thead>
         <tbody>
         <tr th:each="rentalOperation : ${rentalOperations}">
-            <td th:text="${rentalOperation.car.brand + ' ' + rentalOperation.car.model}"></td>
+            <td th:text="${rentalOperation.car.brand }"></td>
             <td th:text="${rentalOperation.startDate}"></td>
             <td th:text="${rentalOperation.endDate}"></td>
             <td th:text="${rentalOperation.guaranteeType}"></td>
             <td th:text="${rentalOperation.rentalFee}"></td>
             <td th:text="${rentalOperation.paymentMethod}"></td>
             <td th:text="${rentalOperation.guaranteeAmount}"></td>
+			<td>
+			    <a th:href="@{/rental-operations/verify/{id}(id=${rentalOperation.id})}" class="btn btn-warning">Check Availability</a>
+			</td>
+          
+
+
         </tr>
         </tbody>
     </table>

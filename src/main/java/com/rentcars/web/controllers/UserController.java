@@ -57,11 +57,6 @@ public class UserController {
 		return "client";
 	}
 	
-	@GetMapping("agent-page")
-	public String adminPage (Model model, Principal principal) {
-		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
-		model.addAttribute("user", userDetails);
-		return "agent";
-	}
+
 
 }

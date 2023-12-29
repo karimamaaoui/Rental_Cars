@@ -35,9 +35,9 @@ public class SecurityConfig {
 		http.csrf(c -> c.disable())
 		
 		.authorizeHttpRequests(request -> 
-		request.requestMatchers("/agent-page").hasAuthority("AGENT")
-				.requestMatchers("/cars/**").hasAnyAuthority("AGENT")
-				.requestMatchers("/register","/client-page").permitAll()
+		request
+				.requestMatchers("/register","/client-page","/images/**","/rental-operations/**").permitAll()
+				.requestMatchers("/agent-page","/cars/**","rental-operations/list").hasAuthority("AGENT")
 				.anyRequest().authenticated())
 
 		.formLogin(form -> form.loginPage("/login").loginProcessingUrl("/login")

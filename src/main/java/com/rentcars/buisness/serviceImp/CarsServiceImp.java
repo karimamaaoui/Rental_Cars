@@ -1,5 +1,6 @@
 package com.rentcars.buisness.serviceImp;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -60,10 +61,11 @@ public class CarsServiceImp implements ICarsService{
 		        existingCar.setNumber(car.getNumber());
 		        existingCar.setPicture(car.getPicture());
 		        existingCar.setPrice(car.getPrice());
-		        existingCar.setState(car.getState());
 		        carsRepository.save(existingCar);
 		    }
 		}
 
+
+		
 
 }

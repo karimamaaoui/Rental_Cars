@@ -1,5 +1,6 @@
 package com.rentcars.buisness.serviceImp;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +14,7 @@ import com.rentcars.dao.entities.Cars;
 import com.rentcars.dao.entities.RentalOperation;
 import com.rentcars.dao.repositories.CarsRepository;
 import com.rentcars.dao.repositories.RentalOperationRepository;
+import com.rentcars.web.models.requests.RentalOperationInfoDTO;
 
 @Service
 public class RentalOperationService implements IRentalOperationService {
@@ -43,20 +45,24 @@ public class RentalOperationService implements IRentalOperationService {
         return optional.orElse(null);
     }
 
-    public boolean isCarAvailable(Long carId, Date startDate, Date endDate) {
-        Cars car = new Cars();
-        car.setIdCar(carId);
+	@Override
+	public RentalOperation getRentalOperationById(long id) {
+		   Optional <RentalOperation> optional = rentalOperationRepository.findById(id);
+		   RentalOperation rental = null;
+	        if (optional.isPresent()) {
+	            rental = optional.get();
+	        } else {
+	            throw new RuntimeException(" rental not found for id :: " + id);
+	        }
+	        return rental;
 
-        List<RentalOperation> overlappingRentals = rentalOperationRepository.findByCarAndStartDateBeforeAndEndDateAfter(
-                car, endDate, startDate);
+	}
 
-        return overlappingRentals.isEmpty();
-    }
-   /* @Override
-    public boolean isCarAvailableForPeriod(Date endDate, Date startDate) {
-        long diffInMillies = Math.abs(endDate.getTime() - startDate.getTime());
-        long diffInDays = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+	
 
-        return diffInDays > 0;
-    }*/
+
+
+   
+
+
 }

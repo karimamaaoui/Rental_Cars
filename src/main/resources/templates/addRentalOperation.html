@@ -18,7 +18,7 @@
     <h1>Add Rental Operation</h1>
 
 <form th:action="@{/rental-operations/save-operation}" method="post" th:object="${rentalOperationForm}">
-      <div class="mb-3">
+     <div class="mb-3" >
     <label for="carId" class="form-label">Car</label>
     <select class="form-select" id="carId" th:field="*{car}" required>
 		<option th:value="${selectedCar.idCar}" th:text="${selectedCar.brand}"></option>

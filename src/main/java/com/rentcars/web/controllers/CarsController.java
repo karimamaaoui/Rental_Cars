@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -64,6 +66,8 @@ public class CarsController {
         return "redirect:/cars/list";
     }
 
+
+    
     @GetMapping("/create-car")
     @PreAuthorize("hasAuthority('AGENT')")
     public String showAddCars(Model model){
@@ -96,10 +100,10 @@ public class CarsController {
             Files.copy(inputStream, Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
         }
 
-        carForm.setPicture("/images/" + originalFilename);
-    } else {
-        carForm.setPicture("/images/default.jpg");
-    }
+       carForm.setPicture("/images/" + originalFilename);
+    
+
+    } 
 
     Cars car = new Cars();
     car.setBrand(carForm.getBrand());
@@ -107,7 +111,6 @@ public class CarsController {
     car.setNumber(carForm.getNumber());
     car.setPrice(carForm.getPrice());
     car.setPicture(carForm.getPicture());
-    car.setState(EState.AVAILABLE);
     car.setAgent(agent);
     carsService.saveCars(car);
     return "redirect:/cars/list";
@@ -119,7 +122,7 @@ public class CarsController {
     public String showEditCarForm(@PathVariable("id") Long id, Model model) {
         Cars car = carsService.getCarsById(id);
         if(car != null) {
-            model.addAttribute("carsForm", new CarsForm(car.getNumber(), car.getModel(), car.getBrand(), car.getPrice(), car.getPicture(),car.getState(),car.getAgent()));
+            model.addAttribute("carsForm", new CarsForm(car.getNumber(), car.getModel(), car.getBrand(), car.getPrice(), car.getPicture(),car.getAgent()));
         }
 
         model.addAttribute("carsForm", car);
@@ -143,7 +146,7 @@ public class CarsController {
             car.setNumber(carsForm.getNumber());
             car.setModel(carsForm.getModel());
             car.setPrice(carsForm.getPrice());
-            car.setState(carsForm.getState());
+           // car.setState(carsForm.getState());
 
             // Check if a new file is provided
             if (!file.isEmpty()) {
@@ -155,7 +158,7 @@ public class CarsController {
                     Files.copy(inputStream, Paths.get(filePath), StandardCopyOption.REPLACE_EXISTING);
                 }
 
-                // Set the new picture path
+                // Set the new picture
                 car.setPicture(originalFilename);
             }
         }
@@ -167,6 +170,8 @@ public class CarsController {
     }
 
 
+    
+    
     
 
   

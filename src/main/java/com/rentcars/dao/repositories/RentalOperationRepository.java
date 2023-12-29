@@ -12,6 +12,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RentalOperationRepository extends JpaRepository<RentalOperation, Long> {
-    List<RentalOperation> findByCarAndStartDateBeforeAndEndDateAfter(Cars car, Date endDate, Date startDate);
 
 }

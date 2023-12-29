@@ -1,5 +1,8 @@
 package com.rentcars.web.models.requests;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import com.rentcars.dao.entities.EState;
 import com.rentcars.dao.entities.User;
 
@@ -18,7 +21,6 @@ public class CarsForm {
     private String brand;
     private float price;
     private String picture;
-    private EState state;
     private User agent;
 	
 }

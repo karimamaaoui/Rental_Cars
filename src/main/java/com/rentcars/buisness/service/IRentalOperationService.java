@@ -1,6 +1,8 @@
 package com.rentcars.buisness.service;
 
+import com.rentcars.dao.entities.Cars;
 import com.rentcars.dao.entities.RentalOperation;
+import com.rentcars.web.models.requests.RentalOperationInfoDTO;
 
 import java.util.Date;
 import java.util.List;
@@ -12,7 +14,7 @@ public interface IRentalOperationService {
     RentalOperation getRentalOperationById(Long id);
 
     void saveRentalOperation(RentalOperation rentalOperation);
-    boolean isCarAvailable(Long carId, Date startDate, Date endDate) ;
-
     
+    RentalOperation getRentalOperationById(long id);
+	  
 }
