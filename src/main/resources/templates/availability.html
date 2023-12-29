@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Availability Checker</title>
+</head>
+<body>
+
+    <h2>Car Availability Checker</h2>
+
+  
+    <form th:action="@{/rental-operations/checkAvailability}" >
+        <label for="carId">Car ID:</label>
+        <input type="text" id="carId" name="carId" required>
+
+        <label for="startDate">Start Date:</label>
+        <input type="text" id="startDate" name="startDate" required>
+
+        <label for="endDate">End Date:</label>
+        <input type="text" id="endDate" name="endDate" required>
+
+        <button type="submit">Check Availability</button>
+    </form>
+
+    <div th:if="${result != null}" th:text="${result}" th:style="${result.startsWith('La voiture est disponible') ? 'color: green;' : 'color: red;'}"></div>
+
+</body>
+</html>

@@ -23,7 +23,7 @@ public class UserServiceImpl implements IUserService{
 
 		if(userForm.getRole()==null)
 		{
-			userForm.setRole(ERoleUser.CLIENT);
+			userForm.setRole(ERoleUser.AGENT);
 			}
 		User user = new User(
 				null, 
@@ -33,6 +33,11 @@ public class UserServiceImpl implements IUserService{
 				passwordEncoder.encode(userForm.getPassword()) ,
 				userForm.getRole());
 		return userRepository.save(user);
+	}
+
+	@Override
+	public User getUserById(Long userId) {
+	    return userRepository.findById(userId).orElse(null);
 	}
 
 }

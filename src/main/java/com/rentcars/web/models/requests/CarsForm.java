@@ -1,6 +1,7 @@
 package com.rentcars.web.models.requests;
 
 import com.rentcars.dao.entities.EState;
+import com.rentcars.dao.entities.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,5 +19,6 @@ public class CarsForm {
     private float price;
     private String picture;
     private EState state;
-
+    private User agent;
+	
 }

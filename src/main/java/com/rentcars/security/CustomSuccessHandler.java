@@ -22,11 +22,7 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
 
         
         if (roles.orElse("").equals("AGENT")) {
-            response.sendRedirect("/agent-page");
-        } else if (roles.orElse("").equals("CLIENT")) {
-            response.sendRedirect("/client-page");
-        } else {
-            response.sendRedirect("/error");
-        }
+            response.sendRedirect("/cars/list");
+        } 
     }
 }

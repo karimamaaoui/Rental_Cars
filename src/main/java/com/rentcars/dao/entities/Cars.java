@@ -8,6 +8,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,6 +40,10 @@ public class Cars {
     private String picture;
     @Enumerated(EnumType.STRING)
 	private EState state;
+    
+    @ManyToOne
+    @JoinColumn(name = "agent_id") 
+    private User agent;
 	
 
 	

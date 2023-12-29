@@ -18,18 +18,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/cars/list">Home</a>
+                    <a class="nav-link" href="/client-page">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/cars/list">Cars</a>
+                    <a class="nav-link" href="/client-page">Cars</a>
                 </li>
             </ul>
-            <ul class="navbar-nav">
-                <li sec:authorize="isAuthenticated">
-                    <a th:href="@{/logout}" class="nav-link">Logout</a>
-                </li>
-            </ul>
-        </div>
+          </div>
     </div>
 </nav>
            

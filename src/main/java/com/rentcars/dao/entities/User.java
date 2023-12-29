@@ -39,5 +39,5 @@ public class User {
 
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
-    private ERoleUser role = ERoleUser.CLIENT;   
+    private ERoleUser role = ERoleUser.AGENT;   
 }

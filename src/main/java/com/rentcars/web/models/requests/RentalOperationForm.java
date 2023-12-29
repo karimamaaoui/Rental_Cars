@@ -1,6 +1,7 @@
 package com.rentcars.web.models.requests;
+import java.util.Date;
 
-import java.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.rentcars.dao.entities.Cars;
 import com.rentcars.dao.entities.User;
@@ -16,11 +17,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RentalOperationForm {
-
+	
     private Cars car;
-    private User client;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date endDate;
     private String guaranteeType;
     private double rentalFee;
     private String paymentMethod;

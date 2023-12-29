@@ -47,9 +47,11 @@ public class UserController {
 	}
 	
 	@GetMapping("client-page")
-	public String userPage (Model model, Principal principal) {
-		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
-		model.addAttribute("user", userDetails);
+	//public String userPage (Model model, Principal principal) {
+	public String userPage (Model model) {
+		
+		//UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
+		//model.addAttribute("user", userDetails);
 	    model.addAttribute("cars", carsService.getAllCars());
 
 		return "client";

@@ -39,6 +39,8 @@
             <td>
                <a th:href="@{/cars/edit-car/{id}(id=${car.idCar})}" class="btn btn-primary">Update</a>
                 <a th:href="@{/cars/delete-car/{id}(id=${car.idCar})}" class="btn btn-danger">Delete</a>
+               <a th:href="@{/rental-operations/add-operation/{carId}(carId=${car.idCar})}" class="btn btn-warning">Rent</a>
+         
             </td>
         </tr>
         </tbody>

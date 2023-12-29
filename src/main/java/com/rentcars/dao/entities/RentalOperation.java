@@ -1,6 +1,9 @@
 package com.rentcars.dao.entities;
 
-import java.time.LocalDate;
+
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,13 +26,10 @@ public class RentalOperation {
     @ManyToOne
     @JoinColumn(name = "car_id")
     private Cars car;
-
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private User client;
-
-    private LocalDate startDate;
-    private LocalDate endDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date endDate;
     private String guaranteeType;
     private double rentalFee;
     private String paymentMethod;

@@ -35,13 +35,11 @@ public class SecurityConfig {
 		http.csrf(c -> c.disable())
 		
 		.authorizeHttpRequests(request -> 
-		request.requestMatchers("/agent-page").hasAuthority("AGENT").
-				requestMatchers("/client-page").hasAuthority("CLIENT").
-				requestMatchers("/cars/list").hasAnyAuthority("CLIENT","AGENT")
+		request.requestMatchers("/agent-page").hasAuthority("AGENT")
 				.requestMatchers("/cars/**").hasAnyAuthority("AGENT")
-				.requestMatchers("/register", "/css/**").permitAll()
+				.requestMatchers("/register","/client-page").permitAll()
 				.anyRequest().authenticated())
-		
+
 		.formLogin(form -> form.loginPage("/login").loginProcessingUrl("/login")
 				.successHandler(customSuccessHandler).permitAll())
 		

@@ -9,6 +9,8 @@ import java.nio.file.StandardCopyOption;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,8 +21,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.rentcars.buisness.service.ICarsService;
+import com.rentcars.buisness.service.IUserService;
 import com.rentcars.dao.entities.Cars;
 import com.rentcars.dao.entities.EState;
+import com.rentcars.dao.entities.User;
+import com.rentcars.security.CustomUserDetail;
 import com.rentcars.web.models.requests.CarsForm;
 
 import jakarta.validation.Valid;
@@ -35,6 +40,9 @@ public class CarsController {
 
 	@Autowired
 	ICarsService carsService;
+	
+	@Autowired
+	IUserService userService;
 	
     // Retrieve all cars
     @GetMapping("/list")
@@ -72,9 +80,14 @@ public class CarsController {
     if (result.hasErrors()) {
         return "add-car";
     }
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    CustomUserDetail customUserDetail = (CustomUserDetail) authentication.getPrincipal();
+    Long userId = customUserDetail.getUserId();
 
+    System.out.println(userId);
+    User agent = userService.getUserById(userId);
     String uploadDirectory ="C:\\Users\\user\\Documents\\workspace-spring-tool-suite-4-4.20.0.RELEASE\\rentcars\\src\\main\\resources\\static\\images";
-
+    
     if (!file.isEmpty()) {
         String originalFilename = file.getOriginalFilename();
         String filePath = Paths.get(uploadDirectory, originalFilename).toString();
@@ -95,7 +108,7 @@ public class CarsController {
     car.setPrice(carForm.getPrice());
     car.setPicture(carForm.getPicture());
     car.setState(EState.AVAILABLE);
-
+    car.setAgent(agent);
     carsService.saveCars(car);
     return "redirect:/cars/list";
 }
@@ -106,7 +119,7 @@ public class CarsController {
     public String showEditCarForm(@PathVariable("id") Long id, Model model) {
         Cars car = carsService.getCarsById(id);
         if(car != null) {
-            model.addAttribute("carsForm", new CarsForm(car.getNumber(), car.getModel(), car.getBrand(), car.getPrice(), car.getPicture(),car.getState()));
+            model.addAttribute("carsForm", new CarsForm(car.getNumber(), car.getModel(), car.getBrand(), car.getPrice(), car.getPicture(),car.getState(),car.getAgent()));
         }
 
         model.addAttribute("carsForm", car);
@@ -143,7 +156,7 @@ public class CarsController {
                 }
 
                 // Set the new picture path
-                car.setPicture("/images/" + originalFilename);
+                car.setPicture(originalFilename);
             }
         }
 
